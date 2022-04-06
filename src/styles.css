@@ -1,0 +1,261 @@
+:root {
+    /*### Primary*/
+
+    --bright-blue: hsl(220, 98%, 61%);
+    /*--check-background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);*/
+
+    /*### light Theme*/
+
+    --very-light-gray: hsl(0, 0%, 98%);
+    --very-light-grayish-blue: hsl(236, 33%, 92%);
+    --light-grayish-blue: hsl(233, 11%, 84%);
+    --dark-grayish-blue-1: hsl(236, 9%, 61%);
+    --very-dark-grayish-blue-1: hsl(235, 19%, 35%);
+
+    /*### dark Theme*/
+
+    --very-dark-blue: hsl(235, 21%, 11%);
+    --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+    --light-grayish-blue: hsl(234, 39%, 85%);
+    --light-grayish-blue-hover: hsl(236, 33%, 92%);
+    --dark-grayish-blue-2: hsl(234, 11%, 52%);
+    --very-dark-grayish-blue-2: hsl(233, 14%, 35%);
+    --very-dark-grayish-blue-3: hsl(237, 14%, 26%);
+
+    --font-size: 18px;
+    --font-normal: 400;
+    --font-bold: 700;
+    --font-family: 'Josefin Sans', sans-serif;
+
+    --bg-desktop-dark: url("./images/bg-desktop-dark.jpg");
+    --bg-desktop-light: url("./images/bg-desktop-light.jpg");
+    --bg-mobile-dark: url("./images/bg-mobile-dark.jpg");
+    --bg-mobile-light: url("./images/bg-mobile-light.jpg");
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-weight: var(--font-normal);
+    transition: .1s ease-in-out;
+}
+
+.light {
+    --very-dark-blue: var(--very-light-gray);
+    --very-dark-desaturated-blue: var(--very-light-gray);
+    --very-dark-grayish-blue-3: var(--very-light-grayish-blue);
+    --very-dark-grayish-blue-2: var(--dark-grayish-blue-1);
+    --bg-desktop-dark: var(--bg-desktop-light);
+    transition: 0.1s ease-in-out;
+}
+.light .item-text, .light .input {
+    color: hsl(235, 21%, 11%);
+}
+.light .help {
+    color: var(--dark-grayish-blue-2);
+}
+
+body {
+    background-image: var(--bg-desktop-dark);
+    background-size: 100% 300px;
+    background-position: start;
+    background-repeat: no-repeat;
+    background-color: var(--very-dark-blue);
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3rem 0;
+}
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.items {
+    transition: 0.1s ease-in-out;
+}
+.container {
+    max-width: 600px;
+    width: 95%;
+    margin: 0 auto;
+    height: calc(100vh - 3rem);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.logo {
+    text-decoration: none;
+    color: var(--very-light-gray);
+    font-weight: var(--font-bold);
+    font-size: 2.4rem;
+}
+.icon-theme {
+    width: 30px;
+    height: 30px;
+}
+.input-container, .item-container {
+    background-color: var(--very-dark-desaturated-blue);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    margin-bottom: 2rem;
+}
+.item-container {
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--very-dark-grayish-blue-3);
+    border-radius: 0%;
+}
+.item-x {
+    padding: 1rem;   
+
+}
+.x-icon {
+    color: transparent;
+}
+.item-container:hover .x-icon {
+    color: var(--very-dark-grayish-blue-2);
+}
+.checkbox {
+    background-color: transparent;
+    border: var(--very-dark-grayish-blue-3) solid 1px;
+    border-radius: 50%;
+    min-width: 25px;
+    min-height: 25px;
+    margin: 1rem;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-checkbox:checked ~ .checkbox {
+    background: linear-gradient(100deg, hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+}
+.input-checkbox {
+    display: none;
+}
+.input, .item-text {
+    height: 20px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--light-grayish-blue);
+    margin-right: 1rem;
+}
+.item-text {
+    min-width: 108px;
+    overflow-x: scroll;
+}
+.true {
+    color: var(--very-dark-grayish-blue-2) !important;
+    text-decoration-line: line-through;
+}
+.icon-check {
+    min-width: 13px;
+    min-height: 13px;
+    margin: auto;
+}
+.input-checkbox:checked .item-text {
+    color: var(--very-light-gray);
+}
+.todo-list {
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 0 150px hsla(0, 0%, 0%, 0.5);
+}
+.light .todo-list, .light .buttons-mobile {
+    box-shadow: 0 0 150px hsla(0, 0%, 0%, 0.15);
+}
+.todo-body {
+    width: 100%;
+    max-height: 40vh;
+    overflow-y: scroll;
+    /*box-shadow: 0 0 150px hsla(0, 0%, 0%, 0.2);*/
+}
+.todo-footer {
+    padding: 1rem;
+    color: var(--very-dark-grayish-blue-2);
+    background-color: var(--very-dark-desaturated-blue);
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-radius: 0 0 5px 5px;
+    /*border-top: 1px solid var(--very-dark-grayish-blue-3);*/
+}
+.btn {
+    margin: 0 .5rem;
+    color: var(--very-dark-grayish-blue-2);
+}
+.clear {
+    color: var(--very-dark-grayish-blue-2);
+}
+.btn:hover, .clear:hover, .active {
+    color: var(--bright-blue);
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.help {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--very-dark-grayish-blue-1);
+    font-size: .9rem;
+}
+.buttons-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 630px) {
+    .buttons {
+        display: none;
+    }
+    .buttons-mobile {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+        width: 100%;
+        background-color: var(--very-dark-desaturated-blue);
+        padding: 1rem 0;
+        border-radius: 5px;
+        box-shadow: 0 0 150px hsla(0, 0%, 0%, 0.5);
+    }
+    .btn {
+        margin: 0 1rem;
+    }
+    .container {
+        width: 90%;
+    }
+    .help {
+        bottom: 30px;
+    }
+    header {
+        margin: 2rem 0;
+    }
+    .x-icon {
+        color: var(--very-dark-grayish-blue-2);
+    }
+    .input-container {
+        margin-bottom: 1.5rem;
+    }
+    body {
+        background-image: var(--bg-mobile-dark);
+    }
+
+    .light {
+        --bg-mobile-dark: var(--bg-mobile-light);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    
+}
