@@ -3,8 +3,10 @@ import { types } from "../type/types";
 
 
 export const fetchSaveTodo = (todo) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
+            const uid = getState().auth.uid;
+            todo = { ...todo, user: uid };
             const resp = await myfetch("todo/save", todo, "POST");
             const body = await resp.json();
             if(todo.id){
@@ -34,9 +36,10 @@ export const fetchDeleteTodo = (id) => {
 }
 
 export const fetchDeleteChecked = () => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
-            const resp = await myfetch("todo/delete", null, "DELETE");
+            const uid = getState().auth.uid;
+            const resp = await myfetch("todo/delete" + uid, null, "DELETE");
             const body = await resp.json();
             console.log(body);
             if (body === true) {
@@ -49,9 +52,10 @@ export const fetchDeleteChecked = () => {
 }
 
 export const fetchTodoList = () => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
-            const resp = await myfetch("todo/", null);
+            const uid = getState().auth.uid;
+            const resp = await myfetch("todo/"+uid, null);
             const body = await resp.json();
             dispatch(setTodoList(body));
         } catch (e) {
@@ -98,4 +102,8 @@ export const deleteTodo = (id) => ({
 
 export const deleteChecked = () => ({
     type: types.deleteChecked
+});
+
+export const reset = () => ({
+    type: types.reset
 });

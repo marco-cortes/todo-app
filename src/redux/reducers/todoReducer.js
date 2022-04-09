@@ -44,6 +44,8 @@ export const todoReducer = (state = initialState, action) => {
                 ...state,
                 todoList: action.payload.todos
             }
+        case types.reset: 
+            return initialState;
         default:
             return state;
     }

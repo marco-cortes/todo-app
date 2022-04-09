@@ -86,13 +86,14 @@ const List = () => {
       <div className="todo-list">
         <div className="todo-body">
           {
+            list &&
             list.map((i, index) => {
               return <Item text={i.text} id={i.id} checked={i.checked} key={index} />
             })
           }
         </div>
         <div className="todo-footer">
-          <p className="items">{list.length} items left</p>
+          <p className="items">{list && list.length} items left</p>
           <div className="buttons">
             <button className="btn active" onClick={all} id="all">All</button>
             <button className="btn" onClick={active} id="active">Active</button>
