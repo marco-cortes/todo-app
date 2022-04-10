@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import check from "../images/icon-check.svg";
+import { startLogout } from "../redux/actions/auth";
 import { fetchSaveTodo } from "../redux/actions/todo";
 
 const Input = () => {
@@ -38,9 +39,16 @@ const Input = () => {
     });
   }
 
+  const submitLogout = () => {
+    dispatch(startLogout());
+  }
+
   return (
     <>
-      <p>Bienvenido {name}</p>
+      <div className="input-header">
+        <p className="welcome">Welcome {name}</p>
+        <p className="logout" onClick={submitLogout}>Logout</p>
+      </div>
       <form className="input-container" onSubmit={submit}>
         <input className="input-checkbox" type="checkbox" id="checkbox" onChange={checkboxChange} checked={checked} />
         <label htmlFor="checkbox" className="checkbox">

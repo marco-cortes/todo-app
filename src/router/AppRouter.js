@@ -14,6 +14,7 @@ import { TodoApp } from "../components/TodoApp";
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 import Header from "../components/Header";	
+import { Load } from "../components/Load";
 
 export const AppRouter = () => {
 
@@ -24,8 +25,9 @@ export const AppRouter = () => {
     }, [dispatch, checking]);
 
     if (checking) {
-        return <h5>Espere...</h5>
+        return <Load />
     }
+    
 
     return (
         <div className="container">

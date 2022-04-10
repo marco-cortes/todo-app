@@ -1,17 +1,8 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { startLogout } from "../redux/actions/auth";
 
 const Header = () => {
 
   const [theme, setTheme] = useState("icon-moon.svg");
-  const { uid } = useSelector(state => state.auth);
-  const dispatch = useDispatch();
-
-  const logout = () => {
-    dispatch(startLogout());
-  }
-
 
   const changeTheme = () => {
     const body = document.getElementsByTagName("body")[0];
@@ -33,9 +24,6 @@ const Header = () => {
         <button onClick={changeTheme}>
           <img src={require("../images/" + theme)} className="icon-theme" alt="theme" />
         </button>
-        {
-          uid && <button className="logout" onClick={logout}><i className="fa-solid fa-right-from-bracket logout-icon"></i></button>
-        }
       </div>
     </header>
   )

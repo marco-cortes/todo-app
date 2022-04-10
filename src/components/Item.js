@@ -28,9 +28,18 @@ const Item = ({text, id, checked}) => {
     dispatch(selectTodo(id));
   }
 
+  const submitDrag = (e) => {
+    console.log(e.target)
+    e.target.style.opacity = 0.4;
+  }
+
+  const submitEndDrag = (e) => {
+    e.target.style.opacity = 1;
+  }
+
   return (
-    <div className="item-container">
-      <input className="input-checkbox" type="checkbox" id={id} onChange={checkboxChange} checked={value} />
+    <div className="item-container" draggable="true" onDragStart={submitDrag} onDragEnd={submitEndDrag}>
+      <input className="input-checkbox" type="checkbox" id={id} onChange={checkboxChange} checked={value}/>
       <label htmlFor={id} className="checkbox">
         {
           value ? <img src={check} className="icon-check" alt="check" /> : null

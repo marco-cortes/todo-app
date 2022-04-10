@@ -15,14 +15,15 @@ export const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(startLogin(values.email, values.password));
+    
   }
 
   return (
     <div className="container-auth">
       <h1 className="title">LOGIN</h1>
       <form className="auth" onSubmit={handleLogin}>
-        <input type="email" placeholder="Example@email.com" className="inputForm" name="email" value={values.email} onChange={inputChange} />
-        <input type="password" placeholder="Password" className="inputForm" name="password" value={values.password} onChange={inputChange} />
+        <input type="email" placeholder="Example@email.com" className="inputForm" name="email" value={values.email} onChange={inputChange} required/>
+        <input type="password" placeholder="Password" className="inputForm" name="password" value={values.password} onChange={inputChange} required/>
         <button className="buttonForm">Login</button>
       </form>
       <p className="help">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDeleteChecked, fetchTodoList } from "../redux/actions/todo";
 import Item from "./Item"
+import { Load } from "./Load";
 
 const List = () => {
   const { todoList } = useSelector(state => state.todo);
@@ -75,12 +76,10 @@ const List = () => {
   }
 
 
-
-  if (todoList.length === 0) {
-    return (
-      <div className="empty"></div>
-    )
+  if (todoList === null) {
+    return <Load />
   }
+
   return (
     <>
       <div className="todo-list">

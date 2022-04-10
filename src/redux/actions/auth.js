@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { authFetch, renewFetch } from "../../helpers/fetch";
 import { types } from "../type/types";
 import { reset } from "./todo";
@@ -5,6 +6,7 @@ import { reset } from "./todo";
 
 export const startLogin = (email, password) => {
     return async (dispatch) => {
+
         const resp = await authFetch("auth", { email, password }, "POST");
         const body = await resp.json();
         if (body.ok) {
@@ -15,23 +17,29 @@ export const startLogin = (email, password) => {
                 name: body.user.name
             }));
         } else {
-            if(body.errors){
-                if(body.errors.password)
-                    console.log(body.errors.password);
-                if(body.errors.email)
-                    console.log(body.errors.email);
+            if (body.errors) {
+                if (body.errors.password)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: body.errors.password.msg
+                    });
+                if (body.errors.email)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: body.errors.email.msg
+                    });
             } else {
-                console.log(body.errors);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: body.message
+                });
             }
         }
     }
 }
-
-export const login = (user) => ({
-    type: types.authLogin,
-    payload: user
-});
-
 
 export const startRegister = (email, password, name) => {
     return async (dispatch) => {
@@ -45,15 +53,32 @@ export const startRegister = (email, password, name) => {
                 name: body.user.name
             }));
         } else {
-            if(body.errors){
-                if(body.errors.password)
-                    console.log(body.errors.password);
-                if(body.errors.email)
-                    console.log(body.errors.email);
-                if(body.errors.name)
-                    console.log(body.errors.name);
+            if (body.errors) {
+                console.log(body);
+                if (body.errors.password)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: body.errors.password.msg
+                    });
+                if (body.errors.email)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: body.errors.email.msg
+                    });
+                if (body.errors.name)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: body.errors.name.msg
+                    });
             } else {
-                console.log(body.errors);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: body.message
+                });
             }
         }
     }
@@ -72,7 +97,6 @@ export const startChecking = () => {
                     name: body.user.name
                 }));
             } else {
-                console.log("first")
                 dispatch(checkingFinish()); // para que no se quede en el loading
             }
         } else {
@@ -94,6 +118,14 @@ export const startLogout = () => {
         dispatch(logout());
     }
 }
+
+
+
+export const login = (user) => ({
+    type: types.authLogin,
+    payload: user
+});
+
 
 const logout = () => ({
     type: types.authLogout
